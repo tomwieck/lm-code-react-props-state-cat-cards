@@ -125,27 +125,28 @@ interface CatCardProps{
 }
 
 
-const CatCard : React.FC<CatCardProps> = (props) => {
+const CatCard : React.FC<CatCardProps> = ({ name, species, favFoods, birthYear, catIndex }) => { 
 
-    // console.log("CatCard to App, come in App? Do you read me?", props)
+	return (
+		<div className='card'>
+			<h3 className='card__text card__header'>{name}</h3>
+			<p className='card__text'>Species: {species}</p>
+			<p className='card__text'>Favourite Food(s): {favFoods}</p>
+			<p className='card__text'>Birth Year: {birthYear}</p>
 
-    return (
-           <div className="card">
-            <h3 className="card__text card__header">{props.name}</h3>
-            <CatImage 
-                image={images[props.catIndex].image}
-                altText={images[props.catIndex].altText}
-                licenceType={images[props.catIndex].licenceType}
-                licenceUrl={images[props.catIndex].licenceUrl}
-                attributionName={images[props.catIndex].attributionName}
-                attributionUrl={images[props.catIndex].attributionUrl}
-                key={props.catIndex}
-            />
-            <p className="card__text">Species: {props.species}</p>
-            <p className="card__text">Favourite Food(s): {props.favFoods}</p>
-            <p className="card__text">Birth Year: {props.birthYear}</p>
-        </div>
-    )
-}
+			{catIndex < images.length && (
+			<CatImage 
+				image={images[catIndex].image}
+				altText={images[catIndex].altText}
+				licenceType={images[catIndex].licenceType}
+				licenceUrl={images[catIndex].licenceUrl}
+				attributionName={images[catIndex].attributionName}
+				attributionUrl={images[catIndex].attributionUrl}
+			/>)}
+			
+		</div>
 
-export default CatCard
+	);
+};
+
+export default CatCard;
